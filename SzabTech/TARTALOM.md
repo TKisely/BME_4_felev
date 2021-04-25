@@ -235,6 +235,7 @@ Fokszámok adottak egymáshoz képest
 - D_cl meghatározása
 - D_ur meghatározása
 - U_max feltétel
+- korrekciós polinom
 
 ### Példa a szokásos W-vel
 - T_s megválasztása
