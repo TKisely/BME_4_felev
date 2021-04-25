@@ -1,4 +1,11 @@
 # Tartalomjegyzék
+
+> ez a tartalomjegyzék NEM a labor fájlok tartalmát részletezi, 
+> hanem a teljes gyakorlat/labor anyagát, emiatt a fájlokban
+> esetenként kevesebb jelenik meg.
+> Érdemes a hozzá tartozó füzetes képeket is használni.
+
+
 ## 1. Labor
 - ismerkedés a MatLab környezettel (nem lett feltöltve)
 
@@ -130,3 +137,115 @@
 
 ### PD feladat nem fázistartalékra, hanem MAX bevatkozási jelre
 - lassabb lesz emiatt
+
+## 7. Labor - Soros kompenzátorok
+### Holtidő szerepe
+- exp(-s * T_h)
+### Példa holtidőre
+- OutputDelay felvitele és vizsgálata
+- integrátor miatt a leglassabb T-t ejtjük ki
+- könnyebben lesz instabil a holtidő miatt
+
+### PID példa 
+- A_p, T_i, T_d, T_c, W_c meghatározása 5 db egyenletből
+- PZ kiejtés
+- Nem lineáris egyenletrendszert kapunk, emiatt Matlabra hagyatkozunk
+- Kezdeti értéket keresünk T_c -re és A_p -re
+- fsolve() használata
+- A holtidő a fázistartalékot befolyásolná
+
+### Megvalósitás
+#### ZOH - Zero Order Hold DAC
+- kitartja az értéket a következő mintavételig
+- rosszabb lesz a fázismenet
+
+#### Szabályozás algoritmusának meghatározása
+- Nyquist frekvencia def.
+
+## 8. Labor - DAC és ADC, diszkrét időben tervezés
+- általános szabályozó struktúra
+- ZOH
+
+### Tervezés diszkrét időben
+- mi igaz pólusokra és zérusokra áttéréskor?
+- integrátor hogy néz ki diszkrét időben?
+- egységkör diszkrét számsikon
+- PACMAN
+- mely pólusok a gyorsabbak diszkrét időben (-> 0)
+
+### Példa - diszkrét 
+- stabilitás vizsgálata
+- Matlab miért növel fokszámot?
+- model alapú tervezés
+- r_K -> ... -> y_k
+- T(z), S(z) és R(z) meghatározása
+- domináns póluspár
+- gyors valós pólus
+- zártkör átvitele
+- Hova kerül az integrátor? - > R-be
+- B -> szakasz zérusai
+- Bminus és Bplus meghatározása
+
+### Simulink - 2DOF, két szabadságfokú model
+
+## 9. Labor - 2DOF, két szabadságfokú szabályzó tervezése / méretezése
+- miért 2DOF? 
+- előrecsatoló átvitel
+- visszacsatoló átvitel
+- RST polinomok
+- modelalkotás
+- diszkrét zártkörű átvitel
+- 'B' faktorizálása
+
+### Példa B(z) megadásával
+- mi kiejthető?
+- mi nem kiejthető?
+- megfigyelő polinom ( A_o )
+- Bm ' meghatározása
+- végtelenben a kimenet 1 legyen lehetőleg
+- ugrásválasz végértéke
+- fokszám feltételek
+- csúnya nagy gonosz mátrix, amit senki sem ért igazán, de legalább elvileg számolható
+
+### 2017-es minta vizsga feladata
+W(s) adott, T_s adott, csillapitás adott, W_o adott
+
+#### D, Bminus és Bplus meghatározása
+Nulladrendű tartószerv, B monik, integrátor kell
+
+#### A_m, A_o, S és R'_ 1 egyenleteinek meghatározása
+Fokszámok adottak egymáshoz képest
+> marad 4 db ismeretlen
+
+#### A_m(z) és A_o(z) specifikáció segitségével
+
+#### B' _ m meghatározása
+> csúnya gonosz mátrix magyarázása itt kerül elő
+
+- hogyan érdemes megadni az eredményeket?
+- minden maradék ismeretlen meghatározása
+
+## 10. Labor - Dead beat -  véges beállású szabályozó
+### FIR
+- final input response
+- origóban vannak a pólusai
+- D(z) sablon FIR esetén
+- z^-1 plinomja -> FIR
+- véges lépés után beáll
+- D_cl meghatározása
+- D_ur meghatározása
+- U_max feltétel
+
+### Példa a szokásos W-vel
+- T_s megválasztása
+- T_s költség függvénye
+
+### Simulink tervezés
+
+### Állapotteres módszer
+- x pont és y
+- sajátértékek
+- pólusok és s.é. kapcsolata
+- NEM egyértelmű megvalósitás
+- Látjuk, hogy a sajátértékeke megegyeznek a pólusokkal
+
